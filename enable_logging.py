@@ -1,5 +1,5 @@
 import logging
-import os
+import os, sys
 from datetime import datetime
 
 class ColorFormatter(logging.Formatter):
@@ -42,7 +42,7 @@ def enable_logging(log_file_path: str, level: int = logging.INFO) -> str:
         datefmt='%Y-%m-%d %H:%M:%S'))
 
     # Console handler (with color)
-    console_handler = logging.StreamHandler()
+    console_handler = logging.StreamHandler(sys.stdout)
     console_handler.setFormatter(ColorFormatter(
         '%(asctime)s - %(levelname)s - %(message)s'))
 
