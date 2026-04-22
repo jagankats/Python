@@ -1,0 +1,251 @@
+"""
+Python Interview Practice Script
+Includes:
+- Code
+- Sample Input
+- Output
+- Explanation
+"""
+
+print("\n🔥 1. LONGEST CONSECUTIVE SEQUENCE")
+
+def longest_consecutive(nums):
+    num_set = set(nums)
+    longest = 0
+
+    for num in num_set:
+        if num - 1 not in num_set:
+            current = num
+            length = 1
+
+            while current + 1 in num_set:
+                current += 1
+                length += 1
+
+            longest = max(longest, length)
+    return longest
+
+nums = [100,4,200,1,3,2]
+print("Input:", nums)
+print("Output:", longest_consecutive(nums))
+print("Explanation: Sequence is [1,2,3,4] → length = 4")
+
+
+# --------------------------------------------------
+
+print("\n🔥 2. MOST FREQUENT ELEMENT")
+
+from collections import Counter
+
+def most_frequent(nums):
+    return Counter(nums).most_common(1)[0][0]
+
+nums = [1,3,2,1,4,1,3]
+print("Input:", nums)
+print("Output:", most_frequent(nums))
+print("Explanation: 1 appears most frequently")
+
+
+# --------------------------------------------------
+
+print("\n🔥 3. UNIQUE PAIRS (SUM = TARGET)")
+
+def unique_pairs(nums, target):
+    seen = set()
+    pairs = set()
+
+    for num in nums:
+        diff = target - num
+        if diff in seen:
+            pairs.add(tuple(sorted((num, diff))))
+        seen.add(num)
+
+    return list(pairs)
+
+nums = [1,2,3,2,4]
+target = 5
+print("Input:", nums, "Target:", target)
+print("Output:", unique_pairs(nums, target))
+print("Explanation: Pairs are (1,4) and (2,3)")
+
+
+# --------------------------------------------------
+
+print("\n🔥 4. FLATTEN NESTED LIST")
+
+def flatten(lst):
+    result = []
+    for item in lst:
+        if isinstance(item, list):
+            result.extend(flatten(item))
+        else:
+            result.append(item)
+    return result
+
+lst = [1,[2,[3,4],5],6]
+print("Input:", lst)
+print("Output:", flatten(lst))
+print("Explanation: Nested list flattened")
+
+
+# --------------------------------------------------
+
+print("\n🔥 5. FETCH DATA FROM API")
+
+import requests
+
+def fetch_api():
+    url = "https://jsonplaceholder.typicode.com/posts/1"
+    response = requests.get(url)
+    return response.json()
+
+print("Output:", fetch_api())
+print("Explanation: Data fetched from public API")
+
+
+# --------------------------------------------------
+
+print("\n🔥 6. MULTITHREADING")
+
+import threading
+import time
+
+def task(name):
+    print(f"Start {name}")
+    time.sleep(1)
+    print(f"End {name}")
+
+t1 = threading.Thread(target=task, args=("Thread-1",))
+t2 = threading.Thread(target=task, args=("Thread-2",))
+
+t1.start()
+t2.start()
+
+t1.join()
+t2.join()
+
+print("Explanation: Threads run concurrently (good for I/O tasks)")
+
+
+# --------------------------------------------------
+
+print("\n🔥 7. DATABASE CONNECTION")
+
+import sqlite3
+
+def db_demo():
+    conn = sqlite3.connect(":memory:")
+    cursor = conn.cursor()
+
+    cursor.execute("CREATE TABLE users(id INT, name TEXT)")
+    cursor.execute("INSERT INTO users VALUES(1,'John')")
+    cursor.execute("SELECT * FROM users")
+
+    rows = cursor.fetchall()
+    conn.close()
+    return rows
+
+print("Output:", db_demo())
+print("Explanation: Data fetched from database")
+
+
+# --------------------------------------------------
+
+print("\n🔥 8. FIRST NON-REPEATING CHARACTER")
+
+def first_unique(s):
+    count = Counter(s)
+    for ch in s:
+        if count[ch] == 1:
+            return ch
+    return None
+
+s = "swiss"
+print("Input:", s)
+print("Output:", first_unique(s))
+print("Explanation: 'w' appears once")
+
+
+# --------------------------------------------------
+
+print("\n🔥 9. REVERSE EACH WORD")
+
+def reverse_words(sentence):
+    return " ".join(word[::-1] for word in sentence.split())
+
+sentence = "hello world"
+print("Input:", sentence)
+print("Output:", reverse_words(sentence))
+print("Explanation: Each word reversed")
+
+
+# --------------------------------------------------
+
+print("\n🔥 10. BINARY SEARCH")
+
+def binary_search(nums, target):
+    left, right = 0, len(nums)-1
+
+    while left <= right:
+        mid = (left + right)//2
+
+        if nums[mid] == target:
+            return mid
+        elif nums[mid] < target:
+            left = mid + 1
+        else:
+            right = mid - 1
+    return -1
+
+nums = [1,2,3,4,5]
+target = 4
+print("Input:", nums, "Target:", target)
+print("Output:", binary_search(nums, target))
+print("Explanation: Found at index 3")
+
+
+# --------------------------------------------------
+
+print("\n🔥 11. LONGEST SUBSTRING WITHOUT REPEATING")
+
+def longest_unique(s):
+    seen = set()
+    left = 0
+    max_len = 0
+
+    for right in range(len(s)):
+        while s[right] in seen:
+            seen.remove(s[left])
+            left += 1
+        seen.add(s[right])
+        max_len = max(max_len, right-left+1)
+
+    return max_len
+
+s = "abcabcbb"
+print("Input:", s)
+print("Output:", longest_unique(s))
+print("Explanation: Longest substring is 'abc' → length 3")
+
+
+# --------------------------------------------------
+
+print("\n🔥 12. TWO SUM")
+
+def two_sum(nums, target):
+    lookup = {}
+    for i, num in enumerate(nums):
+        diff = target - num
+        if diff in lookup:
+            return [lookup[diff], i]
+        lookup[num] = i
+
+nums = [2,7,11,15]
+target = 9
+print("Input:", nums, "Target:", target)
+print("Output:", two_sum(nums, target))
+print("Explanation: 2 + 7 = 9 → indices [0,1]")
+
+# --------------------------------------------------
+
+print("\n🎯 ALL QUESTIONS COMPLETED SUCCESSFULLY!")
