@@ -175,14 +175,15 @@ def longest_unique(s):
     seen = set()
     left = 0
     max_len = 0
-
-    for right in range(len(s)):
-        while s[right] in seen:
-            seen.remove(s[left])
+    
+    for char in s:
+        if char not in seen:
+            seen.add(char)
             left += 1
-        seen.add(s[right])
-        max_len = max(max_len, right-left+1)
-
+            max_len = max(len(seen),max_len)
+        else:
+            left = 0
+            seen.clear()
     return max_len
 
 s = "abcabcbb"
@@ -190,26 +191,6 @@ print("Input:", s)
 print("Output:", longest_unique(s))
 print("Explanation: Longest substring is 'abc' → length 3")
 
-
-# --------------------------------------------------
-
-print("\n🔥 12. TWO SUM")
-
-def two_sum(nums, target):
-    lookup = {}
-    for i, num in enumerate(nums):
-        diff = target - num
-        if diff in lookup:
-            return [lookup[diff], i]
-        lookup[num] = i
-
-nums = [2,7,11,15]
-target = 9
-print("Input:", nums, "Target:", target)
-print("Output:", two_sum(nums, target))
-print("Explanation: 2 + 7 = 9 → indices [0,1]")
-
-# --------------------------------------------------
 
 # --------------------------------------------------
 
