@@ -30,7 +30,22 @@ print("Input:", nums)
 print("Output:", longest_consecutive(nums))
 print("Explanation: Sequence is [1,2,3,4] → length = 4")
 
+#longest increasing consecutive sequence in the original list (no reordering).
+nums = [5,4,1,2,3,5,7,8,9,10]
 
+longest = []
+current = [nums[0]]
+for i in range(1, len(nums)):
+    if nums[i] == nums[i-1]+1:
+        current.append(nums[i])
+    else:
+        current = [nums[i]]
+
+    if len(current) > len(longest):
+        longest = current
+
+print("Input:", nums)
+print("Output:", longest)
 # --------------------------------------------------
 
 print("\n🔥 2. MOST FREQUENT ELEMENT")
