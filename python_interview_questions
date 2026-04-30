@@ -103,66 +103,6 @@ print("Output:", flatten(lst))
 print("Explanation: Nested list flattened")
 
 
-# --------------------------------------------------
-
-print("\n🔥 5. FETCH DATA FROM API")
-
-import requests
-
-def fetch_api():
-    url = "https://jsonplaceholder.typicode.com/posts/1"
-    response = requests.get(url)
-    return response.json()
-
-print("Output:", fetch_api())
-print("Explanation: Data fetched from public API")
-
-
-# --------------------------------------------------
-
-print("\n🔥 6. MULTITHREADING")
-
-import threading
-import time
-
-def task(name):
-    print(f"Start {name}")
-    time.sleep(1)
-    print(f"End {name}")
-
-t1 = threading.Thread(target=task, args=("Thread-1",))
-t2 = threading.Thread(target=task, args=("Thread-2",))
-
-t1.start()
-t2.start()
-
-t1.join()
-t2.join()
-
-print("Explanation: Threads run concurrently (good for I/O tasks)")
-
-
-# --------------------------------------------------
-
-print("\n🔥 7. DATABASE CONNECTION")
-
-import sqlite3
-
-def db_demo():
-    conn = sqlite3.connect(":memory:")
-    cursor = conn.cursor()
-
-    cursor.execute("CREATE TABLE users(id INT, name TEXT)")
-    cursor.execute("INSERT INTO users VALUES(1,'John')")
-    cursor.execute("SELECT * FROM users")
-
-    rows = cursor.fetchall()
-    conn.close()
-    return rows
-
-print("Output:", db_demo())
-print("Explanation: Data fetched from database")
-
 
 # --------------------------------------------------
 
@@ -263,4 +203,64 @@ print("Explanation: 2 + 7 = 9 → indices [0,1]")
 
 # --------------------------------------------------
 
-print("\n🎯 ALL QUESTIONS COMPLETED SUCCESSFULLY!")
+# --------------------------------------------------
+
+print("\n🔥 5. FETCH DATA FROM API")
+
+import requests
+
+def fetch_api():
+    url = "https://jsonplaceholder.typicode.com/posts/1"
+    response = requests.get(url)
+    return response.json()
+
+print("Output:", fetch_api())
+print("Explanation: Data fetched from public API")
+
+
+# --------------------------------------------------
+
+print("\n🔥 6. MULTITHREADING")
+
+import threading
+import time
+
+def task(name):
+    print(f"Start {name}")
+    time.sleep(1)
+    print(f"End {name}")
+
+t1 = threading.Thread(target=task, args=("Thread-1",))
+t2 = threading.Thread(target=task, args=("Thread-2",))
+
+t1.start()
+t2.start()
+
+t1.join()
+t2.join()
+
+print("Explanation: Threads run concurrently (good for I/O tasks)")
+
+
+# --------------------------------------------------
+
+print("\n🔥 7. DATABASE CONNECTION")
+
+import sqlite3
+
+def db_demo():
+    conn = sqlite3.connect(":memory:")
+    cursor = conn.cursor()
+
+    cursor.execute("CREATE TABLE users(id INT, name TEXT)")
+    cursor.execute("INSERT INTO users VALUES(1,'John')")
+    cursor.execute("SELECT * FROM users")
+
+    rows = cursor.fetchall()
+    conn.close()
+    return rows
+
+print("Output:", db_demo())
+print("Explanation: Data fetched from database")
+
+
