@@ -87,7 +87,7 @@ print("Explanation: Pairs are (1,4) and (2,3)")
 # --------------------------------------------------
 
 print("\n🔥 4. FLATTEN NESTED LIST")
-
+from collections import Counter
 def flatten(lst):
     result = []
     for item in lst:
@@ -109,9 +109,15 @@ print("Explanation: Nested list flattened")
 print("\n🔥 8. FIRST NON-REPEATING CHARACTER")
 
 def first_unique(s):
-    count = Counter(s)
+    #count_chars = Counter(s)
+    count_chars = {}
+    for char in s:
+        if char in count_chars:
+            count_chars[char] += 1
+        else:
+            count_chars[char] = 1
     for ch in s:
-        if count[ch] == 1:
+        if count_chars[ch] == 1:
             return ch
     return None
 
